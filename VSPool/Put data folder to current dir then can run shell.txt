@@ -1,0 +1,1 @@
+Put data folder to current dir, then you can follow readme.md to run the shell.
