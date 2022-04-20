@@ -11,6 +11,7 @@ import torch.optim as optim
 
 from sklearn.metrics import roc_auc_score, precision_score, recall_score, precision_recall_curve, auc
 
+GNNMODEL = 'GIN'
 
 class CompoundProteinInteractionPrediction(nn.Module):
     def __init__(self):
@@ -20,6 +21,7 @@ class CompoundProteinInteractionPrediction(nn.Module):
         self.ngram = 3
         self.beta = nn.Parameter(torch.FloatTensor(1))
         nn.init.normal_(self.beta,1,0.02)
+        self.gat = nn.Linear(dim,dim)
         self.W_gnn = nn.ModuleList([nn.Linear(dim, dim)
                                     for _ in range(layer_gnn)])
         self.cnn = nn.Sequential(
@@ -45,15 +47,19 @@ class CompoundProteinInteractionPrediction(nn.Module):
                                     for _ in range(layer_output)])
         self.W_interaction = nn.Linear(2*dim, 2)
 
-    def gnn(self, xs, A, layer):
-        """Graph Isomorphism Network"""
-
-        '''
-        AI = A + torch.eye(A.shape[0]).to(device)
-        D = torch.diag(torch.pow(AI.sum(dim=0),-0.5))
-        A = D.mm(AI).mm(D)
-        '''
-        A = A + self.beta*torch.eye(A.shape[0]).to(device)
+    def gnn(self, xs, A, layer, model=GNNMODEL):
+        if model=='GCN':
+            AI = A + torch.eye(A.shape[0]).to(device)
+            D = torch.diag(torch.pow(AI.sum(dim=0),-0.5))
+            A = D.mm(AI).mm(D)
+        elif model=='GAT':
+            z = self.gat(xs)
+            AI = A * F.leaky_relu(self.beta*torch.mm(z,z.t()))
+            A = F.softmax(AI,dim=-1)
+            xs = z
+        else:
+            A = A + self.beta*torch.eye(A.shape[0]).to(device)
+        
         for i in range(layer):
             hs = torch.matmul(A, xs)
             xs = torch.relu(self.W_gnn[i](hs))
