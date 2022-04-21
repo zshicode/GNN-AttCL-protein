@@ -106,6 +106,16 @@ biovec
 rdkit
 ```
 
+## Citation
+```
+@article{shi2022gaclprot,
+    author={Zhuangwei Shi},
+    title={Graph neural networks and attention-based CNN-LSTM for protein classification},
+    journal={arXiv preprint arXiv:2204.09486},
+    year={2022},
+}
+```
+
 ## References
 
 Chen et al. MUFFIN: multi-scale feature fusion for drug–drug interaction prediction, Bioinformatics, 37(17):2651-2658, 2021.
