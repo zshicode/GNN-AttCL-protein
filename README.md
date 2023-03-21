@@ -1,9 +1,11 @@
 # Graph neural networks and attention-based CNN-LSTM for protein classification
 
-This paper proposes three models for protein classification. Firstly, this paper proposes a Multi-label CAZyme classification model using CNN-LSTM with Attention mechanism.  Secondly, this paper proposes a variational graph autoencoder based subspace learning model for protein graph classification. Thirdly, this paper proposes  Graph Isomorphism Networks and Attention-based CNN-LSTM for compound-protein interactions (drug-target affinities) prediction. The proposed models are effective for protein classification. Ablation study is proposed to validate that  graph isomorphism networks is superior to graph convolution and graph attention on this model. 
+This repo proposes three models for protein classification.
+- Multi-label CAZyme classification model using CNN-LSTM with Attention mechanism.  
+- variational graph autoencoder based model for protein graph classification. 
+- Graph Isomorphism Networks and Attention-based CNN-LSTM for compound-protein interactions prediction. 
 
-Besides, this GitHub repository collects and collates the benchmark datasets for three problems mentioned above. Hence, the usage for evaluation by benchmark datasets can be more conveniently. Datasets include: 
-
+Besides, this repo collects and collates the benchmark datasets for three problems mentioned above. Hence, the usage for evaluation by benchmark datasets can be more conveniently. Datasets include: 
 - CAZyme classification
 - Enzyme protein graph classification
 - Compound-protein interactions prediction
@@ -104,16 +106,6 @@ sklearn
 biopython
 biovec
 rdkit
-```
-
-## Citation
-```
-@article{shi2022gaclprot,
-    author={Zhuangwei Shi},
-    title={Graph neural networks and attention-based CNN-LSTM for protein classification},
-    journal={arXiv preprint arXiv:2204.09486},
-    year={2022},
-}
 ```
 
 ## References
