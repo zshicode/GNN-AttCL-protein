@@ -1,4 +1,4 @@
-# Graph neural networks and attention-based CNN-LSTM for protein classification
+# Models and benchmarks for protein classification
 
 This repo proposes three models for protein classification.
 - Multi-label CAZyme classification model using CNN-LSTM with Attention mechanism.  
